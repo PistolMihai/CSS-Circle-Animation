@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Animatie CSS</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+
+      html {
+        min-height: 100vh;
+      }
+
+      body {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #050210;
+      }
+
+      .circle {
+        position: relative;
+        width: 250px;
+        height: 250px;
+        border-radius: 50%;
+        background: linear-gradient(#fb5dad, #55fb9f, #b97aff);
+        animation-name: rotate;
+        animation-duration: 1.5s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .circle::before {
+        content: "";
+        position: absolute;
+        margin: auto;
+        width: 90%;
+        height: 90%;
+        border-radius: 50%;
+        filter: blur(4rem) saturate(1.5);
+        background: linear-gradient(#fb5dad, #55fb9f, #b97aff);
+        z-index: -1;
+      }
+
+      .innerCircle {
+        position: relative;
+        width: 85%;
+        height: 85%;
+        background-color: #050210;
+        border-radius: 50%;
+      }
+
+      .innerCircle::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-radius: inherit;
+        margin: auto;
+        width: 100%;
+        height: 100%;
+        background: rgba(34, 34, 34, 0.205);
+        animation: pulse 1s ease-out infinite;
+      }
+
+      @keyframes rotate {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes pulse {
+        0% {
+          opacity: 1;
+          transform: scale(0);
+        }
+        70% {
+          transform: scale(1);
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="circle">
+      <div class="innerCircle"></div>
+    </div>
+  </body>
+</html>
